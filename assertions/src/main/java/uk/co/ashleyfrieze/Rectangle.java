@@ -1,6 +1,9 @@
 package uk.co.ashleyfrieze;
 
+import java.util.List;
 import java.util.Objects;
+
+import static java.util.Arrays.asList;
 
 /**
  * POJO to represent a rectangle
@@ -35,6 +38,20 @@ public class Rectangle {
      */
     public int getArea() {
         return width * height;
+    }
+
+    /**
+     * @return the lengths of the sides as an array
+     */
+    public int[] getSides() {
+        return new int[] { width, height };
+    }
+
+    /**
+     * @return the lengths of the sides as a list
+     */
+    public List<Integer> getSidesList() {
+        return asList(width, height);
     }
 
     // generated
