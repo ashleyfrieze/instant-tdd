@@ -1,20 +1,19 @@
 package uk.co.ashleyfrieze;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import static java.util.Arrays.asList;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.offset;
 
 /**
- * Original tests using the Assert library from JUnit
+ * Assertion examples using assertJ
  */
-public class AssertionExamplesTest {
+public class AssertionAssertJTest {
     @Test
     public void tryAssertTrue() {
         Rectangle rectangle = new Rectangle(10,10);
 
-        assertTrue(rectangle.isSquare());
+        assertThat(rectangle.isSquare()).isTrue();
     }
 
 
@@ -22,55 +21,57 @@ public class AssertionExamplesTest {
     public void tryAssertFalse() {
         Rectangle rectangle = new Rectangle(1,10);
 
-        assertFalse(rectangle.isSquare());
+        assertThat(rectangle.isSquare()).isFalse();
     }
 
     @Test
     public void tryAssertTrue2() {
         Rectangle rectangle = new Rectangle(10,10);
 
-        assertTrue("Rectangle with same width and height should be square", rectangle.isSquare());
+        assertThat(rectangle.isSquare())
+                .describedAs("Rectangle with same width and height should be square")
+                .isTrue();
     }
 
     @Test
     public void tryAssertNull() {
         Object value = null;
 
-        assertNull(value);
+        assertThat(value).isNull();
     }
 
     @Test
     public void tryAssertNotNull() {
         Object value = new Rectangle(1,1);
 
-        assertNotNull(value);
+        assertThat(value).isNotNull();
     }
 
     @Test
     public void tryAssertEquals() {
-        assertEquals(16, new Rectangle(2, 8).getArea());
+        assertThat(new Rectangle(2, 8).getArea()).isEqualTo(16);
     }
 
     @Test
     public void tryAssertEqualsWithStrings() {
-        assertEquals("Hello\nworld\nnow", "Hello\nWORLD\nnow");
+        assertThat("Hello\nWORLD\nnow").isEqualTo("Hello\nworld\nnow");
     }
 
     @Test
     public void tryAssertNotEquals() {
-        assertNotEquals(99999, new Rectangle(2, 8).getArea());
+        assertThat(new Rectangle(2, 8).getArea()).isNotEqualTo(99999);
     }
 
     @Test
     public void tryAssertEqualsWithDouble() {
         double aspectRatio = new Rectangle(1, 3).getAspectRatio();
 
-        assertEquals(0.33333333333333, aspectRatio, 0.001);
+        assertThat(aspectRatio).isCloseTo(0.33333333333333, offset(0.001));
     }
 
     @Test
     public void tryAssertEqualsWithObject() {
-        assertEquals(new Rectangle(1,1), new Rectangle(1,1));
+        assertThat(new Rectangle(1,1)).isEqualTo(new Rectangle(1,1));
     }
 
     @Test
@@ -78,30 +79,25 @@ public class AssertionExamplesTest {
         Rectangle example1 = new Rectangle(4,5);
         Rectangle example1SecondReference = example1;
 
-        assertSame(example1, example1SecondReference);
+        assertThat(example1).isSameAs(example1SecondReference);
 
         Rectangle duplicateOfExample1 = new Rectangle(4, 5);
 
-        assertNotSame(example1, duplicateOfExample1);
-        assertEquals(example1, duplicateOfExample1);
-    }
-
-    @Test
-    public void tryAssertFail() {
-        Assert.fail("This was never meant to happen");
+        assertThat(example1).isNotSameAs(duplicateOfExample1);
+        assertThat(example1).isEqualTo(duplicateOfExample1);
     }
 
     @Test
     public void tryAssertArray() {
         Rectangle rectangle = new Rectangle(5, 6);
 
-        assertArrayEquals(new int[]{5,6}, rectangle.getSides());
+        assertThat(rectangle.getSides()).containsExactly(5, 6);
     }
 
     @Test
     public void tryAssertList() {
         Rectangle rectangle = new Rectangle(7, 8);
 
-        assertEquals(asList(7,8), rectangle.getSidesList());
+        assertThat(rectangle.getSidesList()).containsExactly(7, 8);
     }
 }
