@@ -8,59 +8,77 @@ import static org.junit.Assert.*;
 public class AssertionExamplesTest {
     @Test
     public void tryAssertTrue() {
-        boolean value = true;
-        assertTrue("Output should be true in this situation", value);
+        Rectangle rectangle = new Rectangle(10,10);
+        assertTrue(rectangle.isSquare());
     }
+
 
     @Test
     public void tryAssertFalse() {
-        boolean value = false;
-        assertFalse("Output should be false in this situation", value);
+        Rectangle rectangle = new Rectangle(1,10);
+        assertFalse(rectangle.isSquare());
+    }
+
+    @Test
+    public void tryAssertTrue2() {
+        Rectangle rectangle = new Rectangle(10,10);
+        assertTrue("Rectangle with same width and height is square", rectangle.isSquare());
     }
 
     @Test
     public void tryAssertNull() {
-        Object value = "";
+        Object value = null;
+        assertNull(value);
+    }
+
+    @Test
+    public void tryAssertNotNull() {
+        Object value = new Rectangle(1,1);
         assertNotNull(value);
     }
 
     @Test
     public void tryAssertEquals() {
-        double someValue = 12.0;
-        assertEquals(12.0, someValue, 0.001f);
+        assertEquals(16, new Rectangle(2, 8).getArea());
+    }
+
+    @Test
+    public void tryAssertEqualsWithStrings() {
+        assertEquals("Hello\nworld\nnow", "Hello\nWORLD\nnow");
     }
 
     @Test
     public void tryAssertNotEquals() {
-        double someValue = 12.0;
-        assertNotEquals(13, someValue, 0.001f);
+        assertNotEquals(99999, new Rectangle(2, 8).getArea());
     }
 
     @Test
-    public void tryAssertFail() {
-        Assert.fail("This is going to fail now");
+    public void tryAssertEqualsWithDouble() {
+        double aspectRatio = new Rectangle(1, 3).getAspectRatio();
+        
+        assertEquals(0.33333333333333, aspectRatio, 0);
     }
 
     @Test
-    public void tryExpected() {
-        // when this assertion fails, you get helpful output
-        // for having defined the expected and actual in the right order
-        assertEquals("Hello\nworld", "Hello\nWORLD!");
+    public void tryAssertEqualsWithObject() {
+        assertEquals(new Rectangle(1,1), new Rectangle(1,1));
     }
 
     @Test
     public void tryAssertSame() {
-        String message = "Hi";
-        String otherMessage = message;
+        Rectangle example1 = new Rectangle(4,5);
+        Rectangle example1SecondReference = example1;
+        assertSame(example1, example1SecondReference);
 
-        assertSame(message, otherMessage);
-        assertEquals(message, otherMessage);
+        Rectangle duplicateOfExample1 = new Rectangle(4, 5);
 
-        StringBuilder builder = new StringBuilder();
-        builder.append("H");
-        builder.append("i");
+        assertNotSame(example1, duplicateOfExample1);
 
-        assertNotSame(message, builder.toString());
-        assertEquals(message, builder.toString());
+        assertEquals(example1, duplicateOfExample1);
+    }
+
+    @Test
+    public void tryAssertFail() {
+        Assert.fail("This was never meant to happen");
     }
 }
