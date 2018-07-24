@@ -13,3 +13,5 @@ Each of the folders within this repository is an appropriately example from the 
 - `articleSender2` - MockitoJUnitRunner refactor of the demo
 - `assertions` - various ways of performing assertions with JUnit, Hamcrest and AssertJ along with asserting for exception and timeout
 - `leapyearparameterized` - conversion of leap year to use parameterized runners - both JUnit's own and JUnitParams
+- `testfolder` - examples of both `@Before` and `@After` being used as well as the `@Rule` for `TemporaryFolder`
+- `spectrum` - a simple walkthrough of the `Spectrum` JUnit runner using the same rectangle library as used in the `assertions` examples.
