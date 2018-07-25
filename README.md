@@ -15,3 +15,4 @@ Each of the folders within this repository is an appropriately example from the 
 - `leapyearparameterized` - conversion of leap year to use parameterized runners - both JUnit's own and JUnitParams
 - `testfolder` - examples of both `@Before` and `@After` being used as well as the `@Rule` for `TemporaryFolder`
 - `spectrum` - a simple walkthrough of the `Spectrum` JUnit runner using the same rectangle library as used in the `assertions` examples.
+- `springcontext` - example of building a spring context based test incrementally
