@@ -17,3 +17,4 @@ Each of the folders within this repository is an appropriately example from the 
 - `spectrum` - a simple walkthrough of the `Spectrum` JUnit runner using the same rectangle library as used in the `assertions` examples.
 - `springcontext` - example of building a spring context based test incrementally
 - `springweb` - a worked example of building a web application - in this case a REST API - test first with Spring Test
+- `mockitorevisited` - examples of varioius options when using mockito
